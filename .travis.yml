@@ -79,14 +79,14 @@ jobs:
     script:
     - mvn install --activate-profiles android-examples --projects examples/android
       --also-make-dependents -Dandroid.device=test
-  - true:
-      repo: cucumber/cucumber-jvm
-    stage: deploy
-    jdk: oraclejdk8
-    script:
+  - script:
     - ./continuous-deployment/before-deploy.sh
     - ./continuous-deployment/deploy.sh
     - ./continuous-deployment/upload-api-docs.sh
+    jdk: oraclejdk8
+    stage: deploy
+    true:
+      repo: cucumber/cucumber-jvm
 language: java
 script:
 - touch /tmp/NOW
